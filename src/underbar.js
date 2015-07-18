@@ -259,6 +259,16 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(arguments, function(arg, ind) {
+      if (ind !== 0) {
+        _.each(arg, function(propVal, key, args) {
+          if (key in obj === false) {
+             obj[key] = propVal;
+           }         
+        });  
+      }  
+    });
+    return obj;
   };
 
 
